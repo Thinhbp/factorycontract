@@ -8,7 +8,7 @@ contract DeterministicDeployFactory {
 
     function deploy(uint _salt) external {
         address addr;
-        bytes memory bytecode = type(vd1).creationCode;
+        bytes memory bytecode = type(child_contract).creationCode;
         assembly {
             addr := create2(0, add(bytecode, 0x20), mload(bytecode), _salt)
             if iszero(extcodesize(addr)) {
